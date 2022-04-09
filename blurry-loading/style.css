@@ -17,12 +17,12 @@ body {
 .bg {
   background: url("./img/bgc-car.jpg") no-repeat center center/cover;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: -30px;
+  left: -30px;
+  width: calc(100vw + 60px);
+  height: calc(100vh + 60px);
   z-index: -1;
-  filter: blur(70px);
+  filter: blur(0px);
 }
 
 .loading-text {
