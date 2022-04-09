@@ -8,7 +8,15 @@ function createTags(input) {
     .split(",")
     .filter(tag => tag.trim() !== "")
     .map(tag => tag.trim());
-  console.log(tags);
+
+  tagsElements.innerHTML = "";
+
+  tags.forEach(tag => {
+    const tagElement = document.createElement("span");
+    tagsElements.classList.add("tag");
+    tagsElements.innerText = tag;
+    togsElements.appendChild(tagElement);
+  });
 }
 
 //Events
