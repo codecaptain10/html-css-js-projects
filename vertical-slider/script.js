@@ -9,24 +9,33 @@ const slidesLength = slideRight.querySelectorAll("div").length;
 //Variables settings
 let activeSlideIndex = 0;
 
-slideLeft.style.top = `${(slidesLength - 1) * 100}`;
+slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`;
 
 //Functions
 const changeSlide = direction => {
   const sliderHeight = sliderContainer.clientHeight;
-  console.log(sliderHeight);
 
   if (direction === "up") {
     activeSlideIndex++;
     if (activeSlideIndex > slidesLength - 1) {
       activeSlideIndex = 0;
     }
+  } else if (direction === "down") {
+    activeSlideIndex--;
+    if (activeSlideIndex < 0) {
+      activeSlideIndex = slidesLength - 1;
+    }
   }
 
+  //Right side
   slideRight.style.transform = `translateY(-${activeSlideIndex *
+    sliderHeight}px)`;
+
+  //Left side
+  slideLeft.style.transform = `translateY(${activeSlideIndex *
     sliderHeight}px)`;
 };
 
 //events
 upButton.addEventListener("click", () => changeSlide("up"));
-downButton.addEventListener("click", () => changeSlide("up"));
+downButton.addEventListener("click", () => changeSlide("down"));
