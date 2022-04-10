@@ -1,6 +1,20 @@
 //DOM variables
-const tagsElements = document.querySelector("#tags");
-const textArea = document.querySelector("textarea");
+const tagsEl = document.getElementById("tags");
+const textArea = document.getElementById("textarea");
+
+//Events
+textArea.focus();
+textArea.addEventListener("keyup", event => {
+  createTags(event.target.value);
+
+  if (event.key === "Enter") {
+    setTimeout(() => {
+      event.target.value = "";
+    }, 10);
+
+    randomSelect();
+  }
+});
 
 //Functions
 function createTags(input) {
@@ -9,18 +23,39 @@ function createTags(input) {
     .filter(tag => tag.trim() !== "")
     .map(tag => tag.trim());
 
-  tagsElements.innerHTML = "";
+  tagsEl.innerHTML = "";
 
   tags.forEach(tag => {
-    const tagElement = document.createElement("span");
-    tagsElements.classList.add("tag");
-    tagsElements.innerText = tag;
-    togsElements.appendChild(tagElement);
+    const tagEl = document.createElement("span");
+    tagEl.classList.add("tag");
+    tagEl.innerText = tag;
+    tagsEl.appendChild(tagEl);
   });
 }
 
-//Events
-textArea.focus();
-textArea.addEventListener("keyup", event => {
-  createTags(event.target.value);
-});
+function randomSelect() {
+  //console.log("Test! Don't worry");
+  const times = 30;
+
+  const interval = setInterval(() => {
+    const randomTag = pickRandomTag();
+    highlightTag(randomTag);
+
+    setTimeout(() => {
+      unHighlightTag(randomTag);
+    }, 100);
+  }, 100);
+}
+
+function pickRandomTag() {
+  const tags = document.querySelectorAll(".tag");
+  return tags[Math.floor(Math.random() * tags.length)];
+}
+
+function highlightTag(tag) {
+  tag.classList.add("highlight");
+}
+
+function unHighlightTag(tag) {
+  tag.classList.remove("highlight");
+}
