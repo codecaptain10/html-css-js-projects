@@ -6,10 +6,10 @@ async function getDataFromAPI() {
   const res = await fetch("https://randomuser.me/api?results=50");
 
   const { results } = await res.json();
-  console.log(results);
+  // console.log(results);
 
   //Clear results
-  results.innerHTML = "";
+  result.innerHTML = "";
   results.forEach(user => {
     const li = document.createElement("li");
     listItems.push(li);
@@ -21,7 +21,7 @@ async function getDataFromAPI() {
     </div>
       `;
 
-    result.appendChild(li); //
+    result.appendChild(li);
   });
 }
 
