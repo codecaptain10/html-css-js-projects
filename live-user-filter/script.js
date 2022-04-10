@@ -1,7 +1,9 @@
+//Variables
 const result = document.querySelector("#result");
 const filter = document.querySelector("#filter");
 const listItems = [];
 
+//Functions
 async function getDataFromAPI() {
   const res = await fetch("https://randomuser.me/api?results=50");
 
@@ -25,4 +27,20 @@ async function getDataFromAPI() {
   });
 }
 
+function filterData(searchTerm) {
+  listItems.forEach(item => {
+    if (item.innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
+      item.classList.remove("hide");
+    } else {
+      item.classList.add("hide");
+    }
+  });
+}
+
+//get data from API
 getDataFromAPI();
+
+//Event
+filter.addEventListener("input", event => {
+  filterData(event.target.value);
+});
