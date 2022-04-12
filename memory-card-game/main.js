@@ -43,6 +43,7 @@ const cardGenerator = () => {
   //Get Data
   const cardData = randomize();
   //Generate HTML
+
   cardData.forEach(item => {
     const card = document.createElement("div");
     const face = document.createElement("img");
@@ -52,6 +53,7 @@ const cardGenerator = () => {
     back.classList = "back";
     //Attach the info to the cards
     face.src = item.imgSrc;
+    card.setAttribute("name", item.name);
     //Atach the card to the section
     section.appendChild(card);
     card.appendChild(face);
@@ -60,8 +62,14 @@ const cardGenerator = () => {
     //Add event
     card.addEventListener("click", event => {
       card.classList.toggle("toggleCard");
+      checkCards(event);
     });
   });
+};
+
+//Check cards
+const checkCards = e => {
+  const clickedCard = e.target;
 };
 
 cardGenerator();
