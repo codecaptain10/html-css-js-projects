@@ -1,7 +1,7 @@
 //DOM Variables and other variables
 const section = document.querySelector("section");
 const playerLivesCount = document.querySelector("span");
-const playerLives = 7;
+let playerLives = 7;
 
 //Link text
 playerLivesCount.textContent = playerLives;
@@ -92,8 +92,27 @@ const checkCards = e => {
           card.classList.remove("toggleCard");
         }, 1000);
       });
+
+      playerLives--;
+      playerLivesCount.textContent = playerLives;
+      if (playerLives === 0) {
+        restart();
+      }
     }
   }
+};
+
+//Restart
+const restart = () => {
+  let cardData = randomize();
+  let faces = document.querySelectorAll(".face");
+  let cards = document.querySelectorAll(".card");
+
+  cardData.forEach((item, index) => {
+    cards[index].classList.remove("toggleCard");
+  });
+  playerLives = 7;
+  playerLivesCount.textContent = playerLives;
 };
 
 cardGenerator();
