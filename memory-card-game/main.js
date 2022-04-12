@@ -50,6 +50,8 @@ const cardGenerator = () => {
     card.classList = "card";
     face.classList = "face";
     back.classList = "back";
+    //Attach the info to the cards
+    face.src = item.imgSrc;
     //Atach the card to the section
     section.appendChild(card);
     card.appendChild(face);
