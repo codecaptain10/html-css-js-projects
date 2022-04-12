@@ -56,6 +56,11 @@ const cardGenerator = () => {
     section.appendChild(card);
     card.appendChild(face);
     card.appendChild(back);
+
+    //Add event
+    card.addEventListener("click", event => {
+      card.classList.toggle("toggleCard");
+    });
   });
 };
 
