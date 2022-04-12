@@ -70,6 +70,30 @@ const cardGenerator = () => {
 //Check cards
 const checkCards = e => {
   const clickedCard = e.target;
+  clickedCard.classList.add("flipped");
+  const flippedCards = document.querySelectorAll(".flipped");
+
+  //Logic
+  if (flippedCards.length === 2) {
+    if (
+      flippedCards[0].getAttribute("name") ===
+      flippedCards[1].getAttribute("name")
+    ) {
+      console.log("match");
+      flippedCards.forEach(card => {
+        card.classList.remove("flipped");
+        card.style.pointerEvents = "none";
+      });
+    } else {
+      console.log("wrong");
+      flippedCards.forEach(card => {
+        card.classList.remove("flipped");
+        setTimeout(() => {
+          card.classList.remove("toggleCard");
+        }, 1000);
+      });
+    }
+  }
 };
 
 cardGenerator();
