@@ -34,8 +34,27 @@ const randomize = () => {
   //2. All what you need to randomize an array
   cardData.sort(() => Math.random() - 0.5);
 
-  //3. Console randomize array with objects
-  console.log(cardData);
+  //3. Return
+  return cardData;
 };
 
-randomize();
+//Card generator
+const cardGenerator = () => {
+  //Get Data
+  const cardData = randomize();
+  //Generate HTML
+  cardData.forEach(item => {
+    const card = document.createElement("div");
+    const face = document.createElement("img");
+    const back = document.createElement("div");
+    card.classList = "card";
+    face.classList = "face";
+    back.classList = "back";
+    //Atach the card to the section
+    section.appendChild(card);
+    card.appendChild(face);
+    card.appendChild(back);
+  });
+};
+
+cardGenerator();
