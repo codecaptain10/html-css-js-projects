@@ -72,6 +72,7 @@ const checkCards = e => {
   const clickedCard = e.target;
   clickedCard.classList.add("flipped");
   const flippedCards = document.querySelectorAll(".flipped");
+  const toggleCard = document.querySelectorAll(".toggleCard");
 
   //Logic
   if (flippedCards.length === 2) {
@@ -101,6 +102,9 @@ const checkCards = e => {
     }
   }
   //Run a check to see if we won the game
+  if (toggleCard.length === 16) {
+    restart("Yes! You won! Amazing! Play again :)");
+  }
 };
 
 //Restart
